@@ -9,7 +9,6 @@ class NextEvent:
         self.time_start = datetime_from_iracing_timestamp(data['start_time'])
 
 
-# Needs to have fix applied to data before
 class TotalRegistered:
     def __init__(self, data):
         self.registered = data['registered']

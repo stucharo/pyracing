@@ -734,7 +734,6 @@ class Client:
         url = ct.URL_SUBS_RESULTS
         return await self._build_request(url, payload)
 
-    # TODO Does not return JSON format. Find how to convert.
     async def total_registered_all(self):
         """ Returns a list of every upcoming session and the number of
         drivers that have registered. This data is used in the small text
