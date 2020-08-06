@@ -7,6 +7,7 @@ from .response_objects import chart_data, session_data, upcoming_events
 from datetime import datetime
 import httpx
 import time
+import ast
 
 
 # This module authenticates a session, builds a URL query from parameters,
@@ -744,7 +745,12 @@ class Client:
         url = ct.URL_TOTALREGISTERED
         response = await self._build_request(url, payload)
 
-        return [upcoming_events.TotalRegistered(x) for x in response.json()]
+        c = response.content.decode("utf-8")
+        c1 = c.replace("seasonid", "'seasonid'")
+        c2 = c1.replace("registered", "'registered'")
+        tra = ast.literal_eval(c2)
+
+        return [upcoming_events.TotalRegistered(x) for x in tra]
 
     async def world_records(
         self,
